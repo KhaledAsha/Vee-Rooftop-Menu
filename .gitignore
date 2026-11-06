@@ -1,0 +1,7 @@
+node_modules/
+.netlify/
+.DS_Store
+Thumbs.db
+
+# Local test copy of the sheet; would publish stale prices if deployed.
+Vee Menu Sheet.csv

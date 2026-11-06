@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Vee Rooftop Menu</title>
+  <meta name="description"
+    content="Vee Rooftop menu: drinks, food, dessert, shisha and breakfast. Daily 8:00 am – 1:00 am.">
+  <meta name="theme-color" content="#2b0a15">
+  <meta property="og:title" content="Vee Rooftop Menu">
+  <meta property="og:description" content="Drinks, food, dessert, shisha and breakfast. Daily 8:00 am – 1:00 am.">
+  <meta property="og:type" content="website">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232b0a15'/%3E%3Cpath d='M12 16h8l12 26 12-26h8L32 52z' fill='%23f4eaea'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet">
+  </noscript>
+  <style>
+    :root {
+      --night: #2b0a15;
+      --wine: #5e1327;
+      --paper: #f4eaea;
+      --ink: #2b0a15;
+      --muted: #7b5a62;
+      --line: rgba(94, 19, 39, 0.16);
+      --display: "DM Serif Display", Georgia, "Times New Roman", serif;
+      --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-padding-top: 76px;
+      background: var(--paper);
+    }
+
+    body {
+      min-height: 100dvh;
+      color: var(--ink);
+      background: var(--paper);
+      font: 400 16px/1.45 var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #top {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      color: #f6e6e4;
+      padding: calc(env(safe-area-inset-top, 0px) + 52px) 24px 0;
+      background: linear-gradient(180deg, #2b0a15 0%, #5e1327 46%, #8e2a47 100%);
+    }
+
+    .sun {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: min(130%, 820px);
+      aspect-ratio: 2 / 1;
+      border-radius: 50%;
+      transform: translate(-50%, 50%);
+      background: radial-gradient(closest-side, rgba(255, 214, 200, 0.8), rgba(226, 154, 165, 0.3) 55%, transparent 72%);
+      animation: dawn 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+
+    @keyframes dawn {
+      from {
+        transform: translate(-50%, 100%);
+        opacity: 0;
+      }
+    }
+
+    #top>*:not(.sun) {
+      position: relative;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto;
+      width: min(30vw, 104px);
+      height: auto;
+      color: #f6e6e4;
+    }
+
+    .tag {
+      max-width: 26ch;
+      margin: 22px auto 10px;
+      font: italic 400 21px/1.35 var(--display);
+    }
+
+    .hours {
+      font: 500 14px var(--sans);
+      color: #f0c9cf;
+    }
+
+    .skyline {
+      display: block;
+      width: 100%;
+      height: 64px;
+      margin: 34px 0 -1px;
+      fill: var(--night);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--night);
+      border-radius: 0 0 14px 14px;
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    #tabs {
+      display: flex;
+      gap: 8px;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4px 16px 12px;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    #tabs::before,
+    #tabs::after {
+      content: '';
+      flex: 0 0 8px;
+    }
+
+    #tabs button {
+      flex: 0 0 auto;
+      font: 500 14px var(--sans);
+      color: #e9cdd2;
+      background: none;
+      border: 1px solid rgba(244, 234, 234, 0.24);
+      border-radius: 999px;
+      padding: 8px 16px;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: background 0.15s ease, color 0.15s ease;
+      scroll-margin: 0 16px;
+    }
+
+    #tabs button:hover {
+      background: rgba(244, 234, 234, 0.1);
+    }
+
+    #tabs button[aria-selected="true"] {
+      background: var(--paper);
+      border-color: var(--paper);
+      color: var(--night);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--wine);
+      outline-offset: 2px;
+    }
+
+    nav :focus-visible {
+      outline-color: var(--paper);
+    }
+
+    main {
+      max-width: 600px;
+      min-height: 60vh;
+      margin: 0 auto;
+      padding: 8px 24px calc(64px + env(safe-area-inset-bottom, 0px));
+    }
+
+    main.swap {
+      animation: swap 0.28s ease-out;
+    }
+
+    @keyframes swap {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+    }
+
+    .title {
+      margin: 34px 0 4px;
+      font: 400 clamp(42px, 13vw, 64px) / 1.02 var(--display);
+      letter-spacing: 0;
+    }
+
+    section+section {
+      margin-top: 44px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--wine);
+      font: italic 400 28px/1.2 var(--display);
+      color: var(--wine);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    li:last-child {
+      border-bottom: 0;
+    }
+
+    .row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .name {
+      font: 500 17px/1.3 var(--sans);
+    }
+
+    .price {
+      flex: none;
+      font: 600 16px var(--sans);
+      font-variant-numeric: tabular-nums;
+      color: var(--wine);
+      white-space: nowrap;
+    }
+
+    .price small {
+      margin-left: 4px;
+      font: 500 11px var(--sans);
+      color: var(--muted);
+    }
+
+    .desc {
+      max-width: 44ch;
+      margin-top: 4px;
+      font: 400 14px/1.5 var(--sans);
+      color: var(--muted);
+    }
+
+    .loading {
+      padding: 48px 0;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .sun,
+      main.swap {
+        animation: none;
+      }
+
+      #tabs {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="top">
+    <div class="sun"></div>
+    <svg class="logo" viewBox="132 92 180 274" role="img" aria-label="VEE Rooftop">
+      <path
+        d="M138.3 98 156.3 98 222.1 212.7 287.7 98 305.7 98 222.1 244.1ZM177.3 98 195.3 98 211.6 126.4 202.6 142.2ZM249.7 98 267.7 98 222.2 176.8 213.6 161.1Z"
+        fill="currentColor" />
+      <path
+        d="M180.7 318.0 181.4 317.2 182.6 313.6 183.6 311.3 184.1 309.7 186.0 305.3 187.5 301.1 188.3 299.3 188.7 297.7 191.4 291.3 192.5 288.3 193.2 287.1 193.6 285.4 195.3 281.4 198.0 274.1 199.3 271.1 199.7 269.6 200.5 268.2 200.4 267.1 199.8 266.4 198.3 266.3 197.4 266.6 196.9 267.2 192.7 278.8 192.2 279.9 191.1 283.3 187.7 292.2 187.0 294.8 183.7 303.2 183.1 305.2 182.6 306.3 182.1 306.6 180.6 304.4 180.2 302.9 179.0 300.6 178.1 297.8 177.4 296.4 176.4 293.8 175.1 290.9 174.6 289.2 173.4 286.8 168.7 274.4 167.9 272.9 165.8 267.4 165.1 266.8 164.1 266.4 158.2 266.4 157.5 266.9 157.6 267.8 159.3 271.8 159.7 273.0 160.5 274.4 161.1 276.3 161.9 277.6 162.4 279.1 167.0 289.3 169.4 295.1 172.3 301.6 173.0 302.7 174.6 306.8 175.3 308.1 179.0 316.9 179.7 317.9 180.2 318.1ZM238.0 316.9 238.5 316.2 239.2 313.2 238.9 312.4 238.1 312.1 236.2 312.1 234.8 312.4 217.1 314.1 216.2 314.1 215.7 313.6 215.4 312.4 215.5 293.4 215.7 292.6 216.3 292.1 217.6 291.9 231.1 292.0 232.2 291.5 232.6 290.6 232.1 289.4 231.3 289.0 217.4 289.1 216.4 288.9 215.9 288.6 215.5 287.4 215.5 271.4 215.6 270.9 215.9 270.6 217.7 270.0 221.4 269.3 223.8 269.2 228.2 270.0 230.9 270.2 234.6 271.1 237.2 271.3 237.8 271.0 238.3 270.3 238.3 268.3 238.5 266.9 237.9 266.5 237.2 266.3 235.8 266.5 212.1 266.4 209.2 266.3 208.7 266.4 208.2 266.8 208.1 267.3 208.2 314.6 208.0 315.8 208.2 316.3 209.1 317.0 210.9 317.1 212.7 317.0 232.4 317.1 235.9 317.0 237.3 317.1ZM280.9 316.8 281.7 316.1 281.7 314.9 282.0 313.4 281.8 312.4 281.1 311.9 279.7 312.2 272.1 312.8 260.9 314.0 259.3 314.1 258.7 313.6 258.5 312.4 258.6 293.3 258.9 292.4 259.6 292.0 261.9 291.9 263.2 292.0 274.7 292.0 275.3 291.6 275.6 290.6 275.2 289.4 274.4 289.0 264.3 289.1 262.1 288.9 259.4 288.9 258.9 288.7 258.5 287.6 258.5 271.6 258.8 270.8 259.7 270.2 261.9 269.6 264.4 269.2 267.9 269.3 278.4 271.2 280.2 271.2 280.9 270.9 281.4 270.1 281.5 267.8 281.3 267.1 280.7 266.6 278.7 266.4 254.1 266.4 251.8 266.5 251.2 267.2 251.1 268.3 251.1 315.3 251.3 316.5 251.7 316.9 252.3 317.1 260.9 317.0 279.9 317.1Z"
+        fill="currentColor" fill-rule="evenodd" />
+      <g fill="none" stroke="currentColor" stroke-width="1.5">
+        <path
+          d="M158.2 360.3V343.8H164.4C168.6 343.8 170.3 345.9 170.3 348.1C170.3 350.3 168.6 352.4 164.4 352.4H158.2M164.2 352.4L171 360.3M221.9 360.3V343.8H231.6M221.9 351.4H229.8M235.2 343.8H247.7M241.45 343.8V360.3M276 360.3V343.8H281.2C285.2 343.8 286.8 345.9 286.8 348.1C286.8 350.3 285.2 352.4 281.2 352.4H276" />
+        <ellipse cx="184.4" cy="352.1" rx="8.3" ry="8.55" />
+        <ellipse cx="206.5" cy="352.1" rx="8.3" ry="8.55" />
+        <ellipse cx="261.35" cy="352.1" rx="8.3" ry="8.55" />
+      </g>
+    </svg>
+    <p class="tag">A refined space designed for comfort, views, and unforgettable moments.</p>
+    <p class="hours">Daily 8:00 am – 1:00 am</p>
+    <svg class="skyline" viewBox="0 0 360 70" preserveAspectRatio="none" aria-hidden="true">
+      <path
+        d="M0 70V50h14V38h16v8h10V30h20v14h12V26h3V16h2v10h13V40h12V32h18V48h10V28h22V40h12V34h16V50h14V36h22V52h12V42h18V30h14V46h12V38h16V54h14V44h12V56h46V70Z" />
+    </svg>
+  </header>
+
+  <nav>
+    <div id="tabs" role="tablist" aria-label="Menu sections"></div>
+  </nav>
+
+  <main id="menu" role="tabpanel" tabindex="0">
+    <p class="loading">Loading menu…</p>
+  </main>
+
+  <script id="data" type="application/json">
+[
+{"id":"cold-drinks","name":"Cold Drinks","cats":[
+ {"name":"Mojito","items":[["Vee Mojito",5.5],["Perry Rush Mojito",5],["Lavender Mojito",5],["Pomraz Mojito",4.75],["Ocean Mojito",4.5]]},
+ {"name":"Fresh Juice","items":[["Strawberry",4.25],["Orange",4.25],["Lemon & Mint",4.25]]},
+ {"name":"Frappe","items":[["Coffee Frappe",5],["Pistachio Frappe",5],["Caramel Frappe",5],["Chocolate Frappe",4.75]]},
+ {"name":"Smoothie","items":[["Vee Smoothie",5],["Mango-Passion",4.75],["Greenberry",4.75],["Green Shock",4.75],["Lemon & Mint",4.75]]},
+ {"name":"Milkshakes","items":[["Vee Milkshake",5.5],["Arabia Milkshake",5.5],["Oreo Milkshake",5],["Chocolate Milkshake",5],["Strawberry Milkshake",5]]},
+ {"name":"Cocktails","items":[["Vee Cocktail",6],["Avocado",6],["Banana & Milk",4.75]]},
+ {"name":"Iced Coffee","items":[["Iced Shaking Latte",4.75],["Spanish Latte",4.75],["Pistachio Latte",4.75],["Caramel Macchiato",4.75],["White Mocha",4.5],["Dark Mocha",4.5],["Iced Latte",4.25],["Americano",3.5]]},
+ {"name":"Iced Tea","items":[["Peach Iced Tea",3.75],["Raspberry Iced Tea",3.75],["Lemon Iced Tea",3.75]]},
+ {"name":"Soft Drinks","items":[["Red Bull",3.5],["Boom Boom",3],["Cola",2],["Soda Water",2],["Water",1]]}
+]},
+{"id":"hot-drinks","name":"Hot Drinks","cats":[
+ {"name":"Coffee","items":[["Spanish Latte",4.25],["Pistachio Latte",4.25],["Caramel Macchiato",4.25],["White Mocha",4],["Dark Mocha",4],["Cappuccino",3.75],["Latte",3.75],["Flat White",3.75],["Cortado",3.75],["Americano",3.25],["Turkish Coffee (double)",3.25],["Espresso",3],["Turkish Coffee (single)",2.5]]},
+ {"name":"Hot Chocolate","items":[["Vee Hot Chocolate",5],["White Hot Chocolate",4],["Dark Hot Chocolate",4]]}
+]},
+{"id":"dessert","name":"Dessert","cats":[
+ {"name":"Dessert","items":[["Kinder Cheesecake",5],["Blueberry Cheesecake",5],["Chocolate Mousse",5],["Red Velvet Cake",5],["San Sebastian",5],["Carrot Cake",5],["German Cake",5],["Brownie",5]]}
+]},
+{"id":"shisha","name":"Shisha","cats":[
+ {"name":"Hookah","items":[["Two Apple Mazaya",6],["Two Apple Nakhlah",6],["Two Apple Fakher",6],["Gum & Cinnamon",6],["Gum & Mint",6],["Mastic",6],["Lemon & Mint",6],["Watermelon & Mint",6],["Blueberry",6],["Candy",6],["Grapes & Mint",6],["Grapes & Berries",6],["Orange",6],["Love",6],["Vee",6],["New Head",2]]}
+]},
+{"id":"food","name":"Food","cats":[
+ {"name":"Main Courses","items":[["Steak",16],["Sea Bass",14],["Chicken Breast",11]]},
+ {"name":"Pasta","items":[["Linguine Creamy Pesto",7.5],["Penne Rosé",7],["Fettuccine Alfredo",7]]},
+ {"name":"Burgers","items":[["Vee Burger",6.5],["Dynamite Chicken",5.5]]},
+ {"name":"Sandwiches","items":[["Steak Sandwich",5.75],["Chicken Quesadilla",5]]},
+ {"name":"Salads","items":[["Crab Salad",6.5],["Vee Salad",5.75],["Caesar Salad",4.75]]},
+ {"name":"Appetizers","items":[["Vee Platter",16],["Vee Bowl",7],["Dynamite Shrimp",6.5],["Chicken Tenders",5],["Jalapeño Cheese",4.5],["Onion Rings",4.5],["French Fries",2]]}
+]},
+{"id":"breakfast","name":"Breakfast","cats":[
+ {"name":"Arabic Breakfast","items":[["Shakshuka",3],["Tomato",2.5],["Potato Mfarakeh",2.5],["Mixed Cheese",2.5],["Grilled Halloumi",2.25],["Eggs",1.75],["Hummus",1.5],["Foul Medames",1.5],["Turkey",1.5],["Labneh",1.5],["Makdous",1.25],["Falafel",1],["Pickles",1],["Strawberry Jam",1],["Butter",1]]},
+ {"name":"French Breakfast","items":[["Avocado Toast with Boiled Eggs",4.25],["Brioche Bread with Eggs & Cheese",3.75],["Zaatar or Mushroom Croissant",3.75],["Halloumi Croissant",3.5],["Turkey Croissant",3.5],["Egg Croissant",3.5],["French Toast",3]]},
+ {"name":"Offers for Two","items":[["Arabic Breakfast for Two",10,"Tomato, hummus, foul, falafel, labneh, jam, pickles, olives, makdous, fresh vegetables and 2 teas."],["French Breakfast for Two",10,"Two main French breakfast items, French toast and two drinks of your choice."]]}
+]}
+]
+</script>
+
+  <script>
+    (function () {
+      // Live menu: Google Sheet CSV (header: tab | category | name | price | description).
+      // If the sheet fails to load, the last good copy (or the built-in menu) is used.
+      var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRkR2zMpEgjLQkdQQIzw9a5mUavE5NJEZo8Qp90iQXV-8r_O1toGtAOomYBzyzqMoJkZwWohuuLrI-Q/pub?gid=511542489&single=true&output=csv';
+      var CACHE_KEY = 'vee-menu-cache-v1';
+      var FETCH_TIMEOUT_MS = 4000;
+
+      var data = JSON.parse(document.getElementById('data').textContent);
+      var tabs = document.getElementById('tabs');
+      var menu = document.getElementById('menu');
+      var top_ = document.getElementById('top');
+      var currentId = location.hash.slice(1) || null;
+
+      function esc(s) {
+        return String(s).replace(/[&<>"]/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+        });
+      }
+
+      function slug(s) {
+        return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'x';
+      }
+
+      function buildTabs() {
+        tabs.innerHTML = '';
+        data.forEach(function (g) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.setAttribute('role', 'tab');
+          b.dataset.id = g.id;
+          b.textContent = g.name;
+
+          b.addEventListener('click', function () { show(g.id, true); });
+
+          b.addEventListener('keydown', function (e) {
+            var target = null;
+            if (e.key === 'ArrowRight') target = b.nextElementSibling || tabs.firstElementChild;
+            else if (e.key === 'ArrowLeft') target = b.previousElementSibling || tabs.lastElementChild;
+            else if (e.key === 'Home') target = tabs.firstElementChild;
+            else if (e.key === 'End') target = tabs.lastElementChild;
+            if (target) {
+              e.preventDefault();
+              target.focus();
+              target.click();
+            }
+          });
+
+          tabs.appendChild(b);
+        });
+      }
+
+      function parseCSV(text) {
+        var rows = [], row = [], cell = '', q = false, i, c;
+        text = text.replace(/^\uFEFF/, '');
+        for (i = 0; i < text.length; i++) {
+          c = text[i];
+          if (q) {
+            if (c === '"') {
+              if (text[i + 1] === '"') { cell += '"'; i++; } else { q = false; }
+            } else { cell += c; }
+          } else if (c === '"') { q = true; }
+          else if (c === ',') { row.push(cell); cell = ''; }
+          else if (c === '\n' || c === '\r') {
+            if (c === '\r' && text[i + 1] === '\n') i++;
+            row.push(cell); rows.push(row); row = []; cell = '';
+          } else { cell += c; }
+        }
+        if (cell !== '' || row.length) { row.push(cell); rows.push(row); }
+        return rows;
+      }
+
+      function csvToData(text) {
+        var rows = parseCSV(text);
+        var groups = [], gIndex = {};
+        var start = (rows[0] && (rows[0][0] || '').trim().toLowerCase() === 'tab') ? 1 : 0;
+        rows.slice(start).forEach(function (r) {
+          var tab = (r[0] || '').trim(), cat = (r[1] || '').trim(), name = (r[2] || '').trim();
+          if (!tab || !name) return;
+
+          var price = (r[3] || '').replace(/[^0-9.,]/g, '').replace(',', '.');
+          var desc = (r[4] || '').trim();
+          var tid = slug(tab);
+          var g = gIndex[tid];
+          if (!g) {
+            g = { id: tid, name: tab, cats: [], _c: {} };
+            gIndex[tid] = g;
+            groups.push(g);
+          }
+          var cname = cat || tab;
+          var ckey = cname.toLowerCase().replace(/\s+/g, ' ');
+          var c = g._c[ckey];
+          if (!c) {
+            c = { name: cname, items: [] };
+            g._c[ckey] = c;
+            g.cats.push(c);
+          }
+          var it = [name, price === '' ? '' : parseFloat(price), desc];
+          c.items.push(it);
+        });
+        groups.forEach(function (g) { delete g._c; });
+        return groups;
+      }
+
+      function render(d) {
+        data = d;
+        buildTabs();
+        show(currentId, false);
+      }
+
+      function loadSheet() {
+        if (!SHEET_CSV_URL) { render(data); return; }
+
+        var ctrl = window.AbortController ? new AbortController() : null;
+        var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, FETCH_TIMEOUT_MS) : null;
+
+        fetch(SHEET_CSV_URL + '&t=' + Date.now(), { cache: 'no-store', signal: ctrl ? ctrl.signal : undefined })
+          .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+          .then(function (t) {
+            clearTimeout(timer);
+            var fresh = csvToData(t);
+            if (!fresh.length) throw new Error('Empty sheet');
+            try { localStorage.setItem(CACHE_KEY, JSON.stringify(fresh)); } catch (e) { }
+            render(fresh);
+          })
+          .catch(function (err) {
+            clearTimeout(timer);
+            console.warn('Menu sheet not loaded, using fallback.', err);
+            var cached = null;
+            try { cached = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (e) { }
+            render(cached && cached.length ? cached : data);
+          });
+      }
+
+      function item(i) {
+        var p = Number(i[1]);
+        var h = '<li><div class="row"><span class="name">' + esc(i[0]) + '</span>';
+        if (isFinite(p) && i[1] !== '' && i[1] !== null) {
+          h += '<span class="price">' + p.toFixed(2) + '<small>JD</small></span>';
+        }
+        h += '</div>';
+        if (i[2]) h += '<p class="desc">' + esc(i[2]) + '</p>';
+        return h + '</li>';
+      }
+
+      function show(id, user) {
+        var g = data.filter(function (x) { return x.id === id; })[0] || data[0];
+        if (!g) return;
+        currentId = g.id;
+        var single = g.cats.length === 1;
+        var html = '<h1 class="title">' + esc(g.name) + '</h1>';
+
+        html += g.cats.map(function (c) {
+          return '<section>' + (single ? '' : '<h2>' + esc(c.name) + '</h2>') +
+            '<ul>' + c.items.map(item).join('') + '</ul></section>';
+        }).join('');
+
+        menu.innerHTML = html;
+        if (user) {
+          menu.classList.remove('swap');
+          void menu.offsetWidth;
+          menu.classList.add('swap');
+        }
+
+        Array.prototype.forEach.call(tabs.children, function (b) {
+          var on = b.dataset.id === g.id;
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+          b.tabIndex = on ? 0 : -1;
+          if (on) {
+            b.scrollIntoView({ inline: 'center', block: 'nearest', behavior: user ? 'smooth' : 'auto' });
+          }
+        });
+
+        if (user) {
+          history.replaceState(null, '', '#' + g.id);
+          var y = top_.offsetHeight;
+          if (window.scrollY > y) {
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }
+      }
+
+      loadSheet();
+    })();
+  </script>
+</body>
+
+</html>
