@@ -4,6 +4,21 @@ Mobile-first online menu for Vee Rooftop (Amman, Jordan). It replaces a PDF menu
 
 Live: https://vee-menu.netlify.app/
 
+## Screenshots
+
+<p>
+  <img src="docs/screenshots/01-home.jpg" width="24%" alt="Home and header">
+  <img src="docs/screenshots/02-cold-drinks.jpg" width="24%" alt="Cold drinks">
+  <img src="docs/screenshots/03-hot-drinks.jpg" width="24%" alt="Hot drinks">
+  <img src="docs/screenshots/04-dessert.jpg" width="24%" alt="Dessert">
+</p>
+<p>
+  <img src="docs/screenshots/05-shisha.jpg" width="24%" alt="Shisha">
+  <img src="docs/screenshots/06-food.jpg" width="24%" alt="Food">
+  <img src="docs/screenshots/07-breakfast-arabic.jpg" width="24%" alt="Arabic breakfast">
+  <img src="docs/screenshots/08-breakfast-offers.jpg" width="24%" alt="Breakfast offers">
+</p>
+
 ## How it works
 
 - Single static page (`index.html`): HTML, CSS and vanilla JavaScript. No framework, no dependencies.
