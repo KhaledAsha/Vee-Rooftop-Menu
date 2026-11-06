@@ -24,7 +24,7 @@ Live: https://vee-menu.netlify.app/
 - Single static page (`index.html`): HTML, CSS and vanilla JavaScript. No framework, no dependencies.
 - The menu is edited in a Google Sheet, published as CSV. The page fetches it on every load.
 - If the sheet cannot be fetched, the page shows the last good copy from the browser cache, then the built-in menu stored in `index.html`.
-- A GitHub Action refreshes the built-in menu from the sheet every hour and commits only when it changed. Netlify deploys from the repository, so a deploy happens only on a real menu change.
+- A GitHub Action refreshes the built-in menu from the sheet every week and commits only when it changed. Netlify deploys from the repository, so a deploy happens only on a real menu change.
 
 ## Sheet format
 
@@ -44,7 +44,7 @@ One row per item. Header row:
 |---|---|
 | `index.html` | The page, including the built-in fallback menu |
 | `update-menu.js` | Rewrites the built-in menu from the sheet (Node 18+, no packages) |
-| `.github/workflows/update-menu.yml` | Runs `update-menu.js` hourly and commits changes |
+| `.github/workflows/update-menu.yml` | Runs `update-menu.js` weekly and commits changes |
 
 ## Update the built-in menu manually
 
